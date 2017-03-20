@@ -1,0 +1,25 @@
+name: slax_api
+version: 0.1.0
+
+authors:
+    - Rishav Sharan <rishav.sharan@gmail.com>
+
+crystal: 0.21.1
+
+license: MIT
+
+targets:
+    slax_api_test:
+        main: src/slax_api.cr
+
+dependencies:
+    kemal:
+        github: kemalcr/kemal
+    pg:
+        github: will/crystal-pg
+    faker:
+        github: askn/faker
+    dotenv:
+        github: gdotdesign/cr-dotenv
+    crecto:
+        github: fridgerator/crecto
