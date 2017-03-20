@@ -8,10 +8,6 @@ shards:
     github: crystal-lang/crystal-db
     version: 0.3.3
 
-  dotenv:
-    github: gdotdesign/cr-dotenv
-    commit: 128b50cd440d9302bcdaece6bd4f3731b5c102a0
-
   faker:
     github: askn/faker
     version: 0.3.0

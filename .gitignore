@@ -2,3 +2,5 @@
 /lib/
 /bin/
 /.shards/
+.env
+src/slax_api/secret.yml
