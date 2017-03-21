@@ -14,7 +14,7 @@ CREATE TABLE users(
 
     name character varying NOT NULL,
     email character varying NOT NULL,
-    gender INTEGER,
+    gender character varying,
     is_adult BOOL DEFAULT FALSE,
     is_admin BOOL DEFAULT FALSE,
     is_mod BOOL DEFAULT FALSE,
@@ -44,8 +44,10 @@ CREATE TABLE posts(
 
     user_id INTEGER references users(id),
     title character varying,
+    slug character varying,
     is_link BOOL,
     link character varying,
+    thumb character varying,
     content text,
     is_viewable BOOL DEFAULT FALSE,
     is_approved BOOL DEFAULT FALSE,
