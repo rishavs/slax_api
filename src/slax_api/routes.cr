@@ -1,28 +1,28 @@
 
 # models Posts
-get "/api/v0.1.0/posts" do 
-	index_posts 
+get "/api/v0.1.0/posts" do |env| 
+	index_posts(env)
 end
 
 post "/api/v0.1.0/posts/create" do |env|
 	create_post(env)
 end
 
-# get "/api/v0.1.0/posts/:id" do |env|
-# 	show_item(env)
-# end
+get "/api/v0.1.0/posts/:id" do |env|
+	show_post(env)
+end
 
 # patch "/api/v0.1.0/posts/:id" do |env|
-# 	save_item(env)
+# 	save_post(env)
 # end
 
 # delete "/api/v0.1.0/posts/:id" do |env|
-# 	delete_item(env)
+# 	delete_post(env)
 # end	
 
 # models Users
-get "/api/v0.1.0/users" do 
-	index_users
+get "/api/v0.1.0/users" do |env|
+	index_users(env)
 end
 
 post "/api/v0.1.0/users/create" do |env|
