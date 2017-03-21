@@ -1,62 +1,79 @@
-get "/p/index" do 
-	index_items 
+
+# models Posts
+get "/api/v0.1.0/posts" do 
+	index_posts 
 end
 
-get "/p/new" do 
-	add_new_item 
-end
-  	
-post "/p/new" do |env|
-	save_new_item(env)
+post "/api/v0.1.0/posts/create" do |env|
+	create_post(env)
 end
 
-get "/p/:id" do |env|
-	show_an_item(env)
+# get "/api/v0.1.0/posts/:id" do |env|
+# 	show_item(env)
+# end
+
+# patch "/api/v0.1.0/posts/:id" do |env|
+# 	save_item(env)
+# end
+
+# delete "/api/v0.1.0/posts/:id" do |env|
+# 	delete_item(env)
+# end	
+
+# models Users
+get "/api/v0.1.0/users" do 
+	index_users
 end
 
-get "/p/:id/edit" do |env|
-	edit_an_item(env)
-end	
-
-patch "/p/:id" do |env|
-	save_edited_item(env)
+post "/api/v0.1.0/users/create" do |env|
+	create_user(env)
 end
 
-delete "/p/:id" do |env|
-	delete_an_item(env)
-end	
+# get "/api/v0.1.0/users/:id" do |env|
+# 	show_item(env)
+# end
 
+# patch "/api/v0.1.0/users/:id" do |env|
+# 	save_item(env)
+# end
 
+# delete "/api/v0.1.0/users/:id" do |env|
+# 	delete_item(env)
+# end	
 
-
-
-
-#---------------------------------------------------------------------------------------
-
-# Redirect browser
-get "/foo" do |env|
-  	# important stuff like clearing session etc.
- 	env.redirect "/bar" # redirect to /bar page
-end
-get "/bar" do 
-	"type foo get bar"
+error 400 do |env|
+	env.response.content_type = "application/json"
+	{ "message": "ERROR: 400 Bad Request",
+		"hint": "Check the input data format" }.to_json
 end
 
-
-get "/error" do |env|
-    env.response.status_code = 403
+error 401 do |env|
+	env.response.content_type = "application/json"
+	{ "message": "ERROR: 401 Unauthorized Request." ,
+		"hint": "You need to be authenticated to use this resource"}.to_json
 end
 
-
-error 404 do
-    "This is a customized 404 page."
+error 403 do |env|
+	env.response.content_type = "application/json"
+	{ "message": "ERROR: 403 Forbidden." ,
+		"hint": "You may not be authorized to access a this resource"}.to_json
 end
 
-error 403 do
-    "Access Forbidden!"
+error 404 do |env|
+	env.response.content_type = "application/json"
+	{ "message": "ERROR: 404 Not Found",
+		"hint": "Check the URL used"}.to_json
 end
 
-get "/" do
-	"Hello World!"
+error 422 do |env|
+	env.response.content_type = "application/json"
+	{ "message": "ERROR: 422 Unprocessable Entity",
+		"hint": "Check the input data for invalid entries" }.to_json
+end
+
+error 500 do |env|
+	env.response.content_type = "application/json"
+	{ "message": "ERROR: 500 Internal Server Error",
+		"hint": "This exception is not yet explicitly handled. Reach out to the dev." }.to_json
 end
 
